@@ -1,0 +1,854 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.8; /* Artırıldı: 1.6 → 1.8 */
+    color: #A4A2A2;
+    overflow-x: hidden;
+    background: #0E0E0E;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@300;400;500;600;700&display=swap');
+
+/* Ultra-optimized animated background */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #0E0E0E url('arkaplan.png') center center/cover no-repeat;
+    overflow: hidden;
+    will-change: auto; /* Remove will-change when not needed */
+}
+
+.animated-bg::before {
+    content: 'PARFUMES OF T PREMIUM FRAGRANCE';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%; /* Reduced width */
+    height: 150%; /* Reduced height */
+    font-size: 6rem; /* Smaller font */
+    font-weight: 700;
+    color: #5B5A5A;
+    opacity: 0.015; /* Reduced opacity */
+    line-height: 1.4;
+    letter-spacing: 0.15em;
+    word-spacing: 1.5em;
+    transform: rotate(-12deg);
+    animation: textFloat 180s linear infinite; /* Slower animation */
+    pointer-events: none;
+    font-family: 'Inter', sans-serif;
+}
+
+.animated-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(14, 14, 14, 0.7); /* Overlay to reduce background image opacity */
+    pointer-events: none;
+}
+
+@keyframes textFloat {
+    0% { transform: rotate(-12deg) translateX(-30%); }
+    100% { transform: rotate(-12deg) translateX(-5%); }
+}
+
+.perfume-spray-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.9; /* Artırıldı: 0.7 → 0.9 */
+}
+
+.luxury-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 70%, rgba(164, 162, 162, 0.015) 0%, transparent 30%),
+        radial-gradient(circle at 70% 30%, rgba(91, 90, 90, 0.008) 0%, transparent 30%);
+    animation: luxuryPulse 20s ease-in-out infinite; /* Slower animation */
+    pointer-events: none;
+}
+
+@keyframes luxuryPulse {
+    0%, 100% { 
+        opacity: 0.3; /* Reduced opacity */
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.5; /* Reduced opacity */
+        transform: scale(1.01); /* Less scaling */
+    }
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(14, 14, 14, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(164, 162, 162, 0.1);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 20px; /* Azaltıldı: 2rem → 1rem */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-image {
+    height: 50px; /* Yazım hatası düzeltildi: 50x → 50px */
+    max-height: 50px; /* Nav bar boyutunu etkilemesin */
+    width: auto;
+    object-fit: contain;
+    overflow: visible; /* Resmin görünmesini sağla */
+}
+
+.logo h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 100;
+    color: #A4A2A2;
+    margin: 0;
+    letter-spacing: 0.1em;
+}
+
+.logo span {
+    font-size: 0.75rem;
+    color: #5B5A5A;
+    font-weight: 300;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #A4A2A2;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.nav-menu a:hover {
+    color: #ffffff;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #A4A2A2;
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 1px;
+    background: #A4A2A2;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.hero-text {
+    max-width: 800px;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: #A4A2A2;
+    margin-bottom: 2rem;
+    line-height: 1.3; /* Artırıldı: 1.1 → 1.3 */
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: #5B5A5A;
+    margin-bottom: 3rem;
+    line-height: 2.0; /* Artırıldı: 1.7 → 2.0 */
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+.cta-button {
+    background: transparent;
+    color: #A4A2A2;
+    border: 1px solid #A4A2A2;
+    padding: 1rem 2.5rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #A4A2A2;
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+
+.cta-button:hover::before {
+    left: 0;
+}
+
+.cta-button:hover {
+    color: #0E0E0E;
+    border-color: #A4A2A2;
+}
+
+/* Products Section */
+.products {
+    padding: 8rem 0;
+    background: rgba(14, 14, 14, 0.98);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(164, 162, 162, 0.05);
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: #A4A2A2;
+    letter-spacing: -0.02em;
+}
+
+.clickable-title {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    user-select: none; /* Metin seçimini engelle */
+}
+
+.clickable-title:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Hover'da parıltı efekti */
+}
+
+.clickable-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #A4A2A2;
+    transition: width 0.3s ease;
+}
+
+.clickable-title:hover::after {
+    width: 100px;
+}
+
+.click-hint {
+    font-size: 0.6em;
+    opacity: 0.6;
+    margin-left: 0.5rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.clickable-title:hover .click-hint {
+    opacity: 1;
+    transform: translateX(5px) translateY(-2px);
+}
+
+/* Ultra-optimized products grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    contain: layout style paint; /* Better containment */
+}
+
+.product-card {
+    background: rgba(14, 14, 14, 0.8);
+    border-radius: 0;
+    overflow: hidden;
+    border: 1px solid rgba(164, 162, 162, 0.1);
+    transition: transform 0.2s ease, border-color 0.2s ease; /* Faster transitions */
+    cursor: pointer;
+    backdrop-filter: blur(8px); /* Reduced blur */
+    contain: layout style paint;
+    transform: translateZ(0); /* Force GPU acceleration */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card:hover {
+    border-color: rgba(164, 162, 162, 0.25); /* Reduced opacity change */
+}
+
+.product-image {
+    height: 200px;
+    background: linear-gradient(135deg, #5B5A5A, #A4A2A2);
+    position: relative;
+    overflow: hidden;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(14, 14, 14, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.product-card:hover .product-overlay {
+    opacity: 1;
+}
+
+.quick-view {
+    background: transparent;
+    color: #A4A2A2;
+    border: 1px solid #A4A2A2;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.quick-view:hover {
+    background: #A4A2A2;
+    color: #0E0E0E;
+}
+
+.product-info {
+    padding: 1.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.product-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+    color: #A4A2A2;
+    letter-spacing: 0.02em;
+    line-height: 1.5; /* Artırıldı: 1.3 → 1.5 */
+    flex-grow: 1;
+}
+
+.price {
+    font-size: 1.1rem;
+    font-weight: 300;
+    font-family: 'Inter', sans-serif;
+    color: #5B5A5A;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #5B5A5A;
+    opacity: 0.6;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+.add-to-cart {
+    background: transparent;
+    color: #A4A2A2;
+    border: 1px solid #A4A2A2;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 0.8rem;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.add-to-cart:hover {
+    background: #A4A2A2;
+    color: #0E0E0E;
+}
+
+/* About Section */
+.about {
+    padding: 8rem 0;
+    background: rgba(14, 14, 14, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(164, 162, 162, 0.05);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    color: #A4A2A2;
+    line-height: 1.2; /* Eski haline döndürüldü: 1.4 → 1.2 */
+    letter-spacing: -0.02em;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8; /* Eski haline döndürüldü: 2.2 → 1.8 */
+    margin-bottom: 3rem;
+    color: #5B5A5A;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+.features {
+    display: grid;
+    gap: 2rem;
+}
+
+.feature {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(164, 162, 162, 0.1);
+}
+
+.feature:last-child {
+    border-bottom: none;
+}
+
+.feature h4 {
+    color: #A4A2A2;
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.feature p {
+    color: #5B5A5A;
+    font-size: 0.9rem;
+    line-height: 1.9; /* Artırıldı: 1.6 → 1.9 */
+    font-weight: 300;
+}
+
+.about-image {
+    display: flex;
+    justify-content: center;
+}
+
+.about-logo {
+    width: 300px;
+    height: 400px;
+    object-fit: contain;
+}
+
+/* Contact Section */
+.contact {
+    padding: 8rem 0;
+    background: rgba(14, 14, 14, 0.98);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(164, 162, 162, 0.05);
+}
+
+.contact-content {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    width: 100%;
+}
+
+.contact-item {
+    padding: 1.5rem;
+    border: 1px solid rgba(164, 162, 162, 0.1);
+    text-align: center;
+    background: rgba(14, 14, 14, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.contact-item h4 {
+    color: #A4A2A2;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.contact-item p {
+    color: #5B5A5A;
+    line-height: 2.0; /* Artırıldı: 1.7 → 2.0 */
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+/* Footer */
+.footer {
+    background: #0E0E0E;
+    color: #5B5A5A;
+    padding: 4rem 0 2rem;
+    border-top: 1px solid rgba(164, 162, 162, 0.1);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    margin-bottom: 1.5rem;
+    color: #A4A2A2;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section a {
+    color: #5B5A5A;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+
+.footer-section a:hover {
+    color: #A4A2A2;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    padding: 0.8rem 1.2rem;
+    border: 1px solid rgba(164, 162, 162, 0.2);
+    border-radius: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: auto;
+    height: auto;
+    text-align: left;
+    line-height: 1;
+    font-size: 0.9rem;
+}
+
+.social-links a svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.social-links a:hover {
+    border-color: #A4A2A2;
+    background: rgba(164, 162, 162, 0.1);
+    color: #A4A2A2;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(164, 162, 162, 0.1);
+    color: #5B5A5A;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+/* Products Page Styles */
+.products-page {
+    padding: 12rem 0 8rem;
+    min-height: 100vh;
+}
+
+.products-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #5B5A5A;
+    margin-bottom: 4rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+}
+
+.nav-menu a.active {
+    color: #ffffff;
+}
+
+.nav-menu a.active::after {
+    width: 100%;
+}
+@media (max-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background: rgba(14, 14, 14, 0.98);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        backdrop-filter: blur(20px);
+        padding: 3rem 0;
+        border-top: 1px solid rgba(164, 162, 162, 0.1);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+    
+    .product-image {
+        height: 180px;
+    }
+    
+    .product-info {
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    
+    .product-info h3 {
+        font-size: 1.1rem;
+        flex-grow: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .nav-container {
+        padding: 1rem 15px; /* Azaltıldı: 1.5rem → 1rem */
+    }
+    
+    .logo-image {
+        height: 40px; /* Mobilde küçültüldü: 70px → 40px */
+        max-height: 40px;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+    }
+    
+    .product-image {
+        height: 150px;
+    }
+    
+    .product-info {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    
+    .product-info h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        flex-grow: 1;
+    }
+    
+    .price {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .add-to-cart {
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+        margin-top: auto;
+        flex-shrink: 0;
+    }
+}
