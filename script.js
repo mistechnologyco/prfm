@@ -502,3 +502,18 @@ document.addEventListener('DOMContentLoaded', function() {
         imageObserver.observe(card);
     });
 });
+
+// Gender filter on products page via URL hash (#kadin / #erkek)
+document.addEventListener('DOMContentLoaded', function() {
+    const productsPage = document.querySelector('.products-page');
+    if (!productsPage) return;
+
+    const hash = window.location.hash;
+    if (hash !== '#kadin' && hash !== '#erkek') return;
+
+    const gender = hash.replace('#', '');
+    document.querySelectorAll('.products-grid .product-card').forEach(card => {
+        const cardGender = card.dataset.gender;
+        card.style.display = cardGender === gender ? '' : 'none';
+    });
+});
